@@ -12,7 +12,29 @@ import {
 } from '../lexer'
 
 describe('Lexer', () => {
-  it('Can Lex a simple workspace', () => {
+  it('Can lex an empty file', () => {
+    const inputText = ''
+    const lexingResult = lex(inputText)
+
+    expect(lexingResult.errors).toHaveLength(0)
+
+    const tokens = lexingResult.tokens
+
+    expect(tokens).toHaveLength(0)
+  })
+
+  it('Can lex an invalid input', () => {
+    const inputText = readDsl(Examples.Invalid)
+    const lexingResult = lex(inputText)
+
+    expect(lexingResult.errors).toHaveLength(1)
+
+    const tokens = lexingResult.tokens
+
+    expect(tokens).toHaveLength(1)
+  })
+
+  it('Can lex an empty workspace', () => {
     const inputText = readDsl(Examples.SimpleWorkspace)
     const lexingResult = lex(inputText)
 
@@ -32,6 +54,17 @@ describe('Lexer', () => {
     expect(tokenMatcher(tokens[2], CurlyBraceLeft)).toBe(true)
     expect(tokenMatcher(tokens[3], CurlyBraceRight)).toBe(true)
   })
+
+  it('Can lex a simple workspace', () => {
+    const inputText = readDsl(Examples.SimpleWorkspace)
+    const lexingResult = lex(inputText)
+
+    expect(lexingResult.errors).toHaveLength(0)
+
+    const tokens = lexingResult.tokens
+
+    expect(tokens).toHaveLength(1)
+  })
 })
 
 function readDsl(example: Examples): string {
@@ -47,6 +80,7 @@ function readDsl(example: Examples): string {
  * Enum depicting the different examples that are present for parsing
  */
 enum Examples {
+  Invalid,
+  EmptyWorkspace,
   SimpleWorkspace,
-  SimpleContainer,
 }
