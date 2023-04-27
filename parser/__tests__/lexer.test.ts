@@ -12,8 +12,8 @@ import {
 } from '../lexer'
 
 describe('Lexer', () => {
-  it('Can Lex a simple input', () => {
-    const inputText = readDsl('simple')
+  it('Can Lex a simple workspace', () => {
+    const inputText = readDsl(Examples.SimpleWorkspace)
     const lexingResult = lex(inputText)
 
     expect(lexingResult.errors).toHaveLength(0)
@@ -34,7 +34,19 @@ describe('Lexer', () => {
   })
 })
 
-function readDsl(fileName: string): string {
-  const content = fs.readFileSync(`./parser/__tests__/examples/${fileName}.dsl`, 'utf8')
+function readDsl(example: Examples): string {
+  const enumName = Examples[example]
+  const content = fs.readFileSync(
+    `./parser/__tests__/examples/${enumName}.dsl`,
+    'utf8'
+  )
   return content
+}
+
+/**
+ * Enum depicting the different examples that are present for parsing
+ */
+enum Examples {
+  SimpleWorkspace,
+  SimpleContainer,
 }
