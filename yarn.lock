@@ -1391,6 +1391,11 @@
   resolved "https://lib.education.lego.com/artifactory/api/npm/libs-release-npm/@types/node/-/node-18.15.11.tgz#b3b790f09cb1696cffcec605de025b088fa4225f"
   integrity sha1-s7eQ8JyxaWz/zsYF3gJbCI+kIl8=
 
+"@types/node@^18.16.1":
+  version "18.16.1"
+  resolved "https://lib.education.lego.com/artifactory/api/npm/libs-release-npm/@types/node/-/node-18.16.1.tgz#5db121e9c5352925bb1f1b892c4ae620e3526799"
+  integrity sha1-XbEh6cU1KSW7HxuJLErmIONSZ5k=
+
 "@types/prettier@^2.1.5":
   version "2.7.2"
   resolved "https://lib.education.lego.com/artifactory/api/npm/libs-release-npm/@types/prettier/-/prettier-2.7.2.tgz#6c2324641cc4ba050a8c710b2b251b377581fbf0"

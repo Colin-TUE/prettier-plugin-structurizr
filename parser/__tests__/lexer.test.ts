@@ -1,6 +1,7 @@
 'use strict'
 
 import { expect } from '@jest/globals'
+import * as fs from 'fs'
 import { tokenMatcher } from 'chevrotain'
 import {
   Workspace,
@@ -12,7 +13,7 @@ import {
 
 describe('Lexer', () => {
   it('Can Lex a simple input', () => {
-    const inputText = 'workspace "Test Workspace" {}'
+    const inputText = readDsl('simple')
     const lexingResult = lex(inputText)
 
     expect(lexingResult.errors).toHaveLength(0)
@@ -32,3 +33,8 @@ describe('Lexer', () => {
     expect(tokenMatcher(tokens[3], CurlyBraceRight)).toBe(true)
   })
 })
+
+function readDsl(fileName: string): string {
+  const content = fs.readFileSync(`./parser/__tests__/examples/${fileName}.dsl`, 'utf8')
+  return content
+}
