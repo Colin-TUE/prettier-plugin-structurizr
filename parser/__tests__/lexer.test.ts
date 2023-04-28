@@ -109,81 +109,53 @@ describe('Lexer', () => {
 
     expect(tokens).toHaveLength(154)
 
-    expect(tokens.filter(token => tokenMatcher(token, Workspace))).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, Model))).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, ExternalInclude))
-    ).toHaveLength(1)
-    // expect(tokens.filter((token) => tokenMatcher(token, Path))).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, Person))).toHaveLength(5)
-    expect(
-      tokens.filter(token => tokenMatcher(token, SoftwareSystem))
-    ).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, Relation))).toHaveLength(
-      12
-    )
-    expect(
-      tokens.filter(token => tokenMatcher(token, Assignment))
-    ).toHaveLength(7)
+    VerifyAmountOfTokenType(tokens, Workspace, 1)
+    VerifyAmountOfTokenType(tokens, Model, 1)
+    VerifyAmountOfTokenType(tokens, ExternalInclude, 1)
+    // VerifyAmountOfTokenType(tokens, Path, 1)
+    VerifyAmountOfTokenType(tokens, Person, 5)
+    VerifyAmountOfTokenType(tokens, SoftwareSystem, 1)
+    VerifyAmountOfTokenType(tokens, Relation, 12)
+    VerifyAmountOfTokenType(tokens, Assignment, 7)
 
-    expect(tokens.filter(token => tokenMatcher(token, Views))).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, Properties))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, SystemLandscapeView))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, SystemContextView))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, ContainerView))
-    ).toHaveLength(2) // Currently it has both the view and hte model element
-    expect(tokens.filter(token => tokenMatcher(token, Include))).toHaveLength(4)
-    expect(tokens.filter(token => tokenMatcher(token, All))).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, Exclude))).toHaveLength(2)
-    expect(
-      tokens.filter(token => tokenMatcher(token, RelationWord))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, PropertyToken))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, SourceProperty))
-    ).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, Equals))).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, AutoLayout))
-    ).toHaveLength(3)
-    expect(
-      tokens.filter(token => tokenMatcher(token, LayoutTopToBottom))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, LayoutLeftToRight))
-    ).toHaveLength(0)
-    expect(
-      tokens.filter(token => tokenMatcher(token, LayoutRightToLeft))
-    ).toHaveLength(1)
-    expect(
-      tokens.filter(token => tokenMatcher(token, LayoutBottomToTop))
-    ).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, Theme))).toHaveLength(1)
-    expect(tokens.filter(token => tokenMatcher(token, URL))).toHaveLength(1)
+    VerifyAmountOfTokenType(tokens, Views, 1)
+    VerifyAmountOfTokenType(tokens, Properties, 1)
+    VerifyAmountOfTokenType(tokens, SystemLandscapeView, 1)
+    VerifyAmountOfTokenType(tokens, SystemContextView, 1)
+    VerifyAmountOfTokenType(tokens, ContainerView, 2) // Currently it has both the view and hte model element
+    VerifyAmountOfTokenType(tokens, Include, 4)
+    VerifyAmountOfTokenType(tokens, All, 1)
+    VerifyAmountOfTokenType(tokens, Exclude, 2)
+    VerifyAmountOfTokenType(tokens, RelationWord, 1)
+    VerifyAmountOfTokenType(tokens, PropertyToken, 1)
+    VerifyAmountOfTokenType(tokens, SourceProperty, 1)
+    VerifyAmountOfTokenType(tokens, Equals, 1)
+    VerifyAmountOfTokenType(tokens, AutoLayout, 3)
+    VerifyAmountOfTokenType(tokens, LayoutTopToBottom, 1)
+    VerifyAmountOfTokenType(tokens, LayoutBottomToTop, 1)
+    VerifyAmountOfTokenType(tokens, LayoutLeftToRight, 0)
+    VerifyAmountOfTokenType(tokens, LayoutRightToLeft, 1)
+    VerifyAmountOfTokenType(tokens, Theme, 1)
+    VerifyAmountOfTokenType(tokens, URL, 1)
 
-    expect(
-      tokens.filter(token => tokenMatcher(token, Identifier))
-    ).toHaveLength(39)
-    expect(tokens.filter(token => tokenMatcher(token, String))).toHaveLength(28)
-    expect(tokens.filter(token => tokenMatcher(token, Integer))).toHaveLength(6)
-    expect(tokens.filter(token => tokenMatcher(token, Comma))).toHaveLength(0)
-    expect(
-      tokens.filter(token => tokenMatcher(token, CurlyBraceLeft))
-    ).toHaveLength(13)
-    expect(
-      tokens.filter(token => tokenMatcher(token, CurlyBraceRight))
-    ).toHaveLength(13)
+    VerifyAmountOfTokenType(tokens, Identifier, 39)
+    VerifyAmountOfTokenType(tokens, String, 28)
+    VerifyAmountOfTokenType(tokens, Integer, 6)
+    VerifyAmountOfTokenType(tokens, Comma, 0)
+    VerifyAmountOfTokenType(tokens, CurlyBraceLeft, 13)
+    VerifyAmountOfTokenType(tokens, CurlyBraceRight, 13)
   })
 })
+
+function VerifyAmountOfTokenType(
+  tokens: IToken[],
+  tokenType: TokenType,
+  expectedAmount: number
+) {
+  expect(tokens.filter(token => tokenMatcher(token, tokenType))).toHaveLength(
+    expectedAmount
+  )
+}
 
 function readDsl(example: Examples): string {
   const enumName = Examples[example]
