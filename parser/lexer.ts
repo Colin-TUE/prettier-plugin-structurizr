@@ -48,6 +48,14 @@ export const SoftwareSystem = createToken({
   name: 'Software System',
   pattern: /softwareSystem/,
 })
+export const Description = createToken({
+  name: 'Description',
+  pattern: /description/,
+})
+export const Technology = createToken({
+  name: 'Technology',
+  pattern: /technology/,
+})
 
 export const Relation = createToken({
   name: 'Relation',
@@ -71,6 +79,7 @@ export const ContainerView = createToken({
   name: 'Container View',
   pattern: /container/,
 })
+export const Title = createToken({ name: 'Title', pattern: /title/ })
 export const Include = createToken({ name: 'Include', pattern: /include/ })
 export const Exclude = createToken({ name: 'Exclude', pattern: /exclude/ })
 export const All = createToken({ name: 'All', pattern: /\*/ })
@@ -131,12 +140,15 @@ const allTokens = [
   Person,
   SoftwareSystem,
   Relation,
+  Description,
+  Technology,
 
   Views,
   Properties,
   SystemContextView,
   SystemLandscapeView,
   ContainerView,
+  Title,
   Include,
   Exclude,
   All,

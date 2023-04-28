@@ -16,6 +16,8 @@ import {
   SoftwareSystem,
   Person,
   Relation,
+  Title,
+  Description,
   Views,
   SystemContextView,
   Include,
@@ -37,6 +39,7 @@ import {
   Property as PropertyToken,
   LayoutRightToLeft,
   URL,
+  Technology,
 } from '../lexer'
 
 describe('Lexer', () => {
@@ -116,6 +119,8 @@ describe('Lexer', () => {
     VerifyAmountOfTokenType(tokens, Person, 5)
     VerifyAmountOfTokenType(tokens, SoftwareSystem, 1)
     VerifyAmountOfTokenType(tokens, Relation, 20)
+    VerifyAmountOfTokenType(tokens, Description, 6)
+    VerifyAmountOfTokenType(tokens, Technology, 0)
     VerifyAmountOfTokenType(tokens, Assignment, 9)
 
     VerifyAmountOfTokenType(tokens, Views, 1)
@@ -123,6 +128,7 @@ describe('Lexer', () => {
     VerifyAmountOfTokenType(tokens, SystemLandscapeView, 1)
     VerifyAmountOfTokenType(tokens, SystemContextView, 1)
     VerifyAmountOfTokenType(tokens, ContainerView, 4) // Currently it has both the view and the model element
+    VerifyAmountOfTokenType(tokens, Title, 3)
     VerifyAmountOfTokenType(tokens, Include, 5)
     VerifyAmountOfTokenType(tokens, All, 2)
     VerifyAmountOfTokenType(tokens, Exclude, 5)
@@ -138,7 +144,7 @@ describe('Lexer', () => {
     VerifyAmountOfTokenType(tokens, Theme, 1)
     VerifyAmountOfTokenType(tokens, URL, 1)
 
-    VerifyAmountOfTokenType(tokens, Identifier, 57)
+    VerifyAmountOfTokenType(tokens, Identifier, 48)
     VerifyAmountOfTokenType(tokens, String, 35)
     VerifyAmountOfTokenType(tokens, Integer, 6)
     VerifyAmountOfTokenType(tokens, Comma, 0)
