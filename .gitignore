@@ -1,4 +1,7 @@
 node_modules/
 coverage/
 yarn-error.log
-dist
+dist/
+
+.structurizr/
+workspace.json

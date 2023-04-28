@@ -100,14 +100,14 @@ describe('Lexer', () => {
   })
 
   it('Can lex a simple workspace', () => {
-    const inputText = readDsl(Examples.SimpleWorkspace)
+    const inputText = readDsl(Examples.workspace)
     const lexingResult = lex(inputText)
 
     expect(lexingResult.errors).toHaveLength(0)
 
     const tokens = lexingResult.tokens
 
-    expect(tokens).toHaveLength(154)
+    expect(tokens).toHaveLength(194)
 
     VerifyAmountOfTokenType(tokens, Workspace, 1)
     VerifyAmountOfTokenType(tokens, Model, 1)
@@ -115,17 +115,17 @@ describe('Lexer', () => {
     // VerifyAmountOfTokenType(tokens, Path, 1)
     VerifyAmountOfTokenType(tokens, Person, 5)
     VerifyAmountOfTokenType(tokens, SoftwareSystem, 1)
-    VerifyAmountOfTokenType(tokens, Relation, 12)
-    VerifyAmountOfTokenType(tokens, Assignment, 7)
+    VerifyAmountOfTokenType(tokens, Relation, 20)
+    VerifyAmountOfTokenType(tokens, Assignment, 9)
 
     VerifyAmountOfTokenType(tokens, Views, 1)
     VerifyAmountOfTokenType(tokens, Properties, 1)
     VerifyAmountOfTokenType(tokens, SystemLandscapeView, 1)
     VerifyAmountOfTokenType(tokens, SystemContextView, 1)
-    VerifyAmountOfTokenType(tokens, ContainerView, 2) // Currently it has both the view and hte model element
-    VerifyAmountOfTokenType(tokens, Include, 4)
-    VerifyAmountOfTokenType(tokens, All, 1)
-    VerifyAmountOfTokenType(tokens, Exclude, 2)
+    VerifyAmountOfTokenType(tokens, ContainerView, 4) // Currently it has both the view and the model element
+    VerifyAmountOfTokenType(tokens, Include, 5)
+    VerifyAmountOfTokenType(tokens, All, 2)
+    VerifyAmountOfTokenType(tokens, Exclude, 5)
     VerifyAmountOfTokenType(tokens, RelationWord, 1)
     VerifyAmountOfTokenType(tokens, PropertyToken, 1)
     VerifyAmountOfTokenType(tokens, SourceProperty, 1)
@@ -138,12 +138,12 @@ describe('Lexer', () => {
     VerifyAmountOfTokenType(tokens, Theme, 1)
     VerifyAmountOfTokenType(tokens, URL, 1)
 
-    VerifyAmountOfTokenType(tokens, Identifier, 39)
-    VerifyAmountOfTokenType(tokens, String, 28)
+    VerifyAmountOfTokenType(tokens, Identifier, 57)
+    VerifyAmountOfTokenType(tokens, String, 35)
     VerifyAmountOfTokenType(tokens, Integer, 6)
     VerifyAmountOfTokenType(tokens, Comma, 0)
-    VerifyAmountOfTokenType(tokens, CurlyBraceLeft, 13)
-    VerifyAmountOfTokenType(tokens, CurlyBraceRight, 13)
+    VerifyAmountOfTokenType(tokens, CurlyBraceLeft, 12)
+    VerifyAmountOfTokenType(tokens, CurlyBraceRight, 12)
   })
 })
 
@@ -160,7 +160,7 @@ function VerifyAmountOfTokenType(
 function readDsl(example: Examples): string {
   const enumName = Examples[example]
   const content = fs.readFileSync(
-    `./parser/__tests__/examples/${enumName}.dsl`,
+    `./structurizr_examples/${enumName}.dsl`,
     'utf8'
   )
   return content
@@ -172,5 +172,5 @@ function readDsl(example: Examples): string {
 enum Examples {
   Invalid,
   EmptyWorkspace,
-  SimpleWorkspace,
+  workspace,
 }

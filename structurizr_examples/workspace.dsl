@@ -1,6 +1,6 @@
 workspace "Test Workspace" {
     model {
-        !include path_to_folder
+        !include path
 
         obiWan = person "Obi-Wan Kenobi" {
             description "Jedi Master and High Jedi General within the Third Systems Army and the 7th Sky Corps."
@@ -19,8 +19,9 @@ workspace "Test Workspace" {
         utapau = softwareSystem "Utapau" {
             description "A remote, subterranean planet located in the Utapau system of the Tarabba sector in the Outer Rim Territories"
 
-            separatistHangar = container "Separatist Hangar" {
-            }
+            separatistHangar = container "Separatist Hangar"
+            landingDeck = container "Landing Deck"
+            sinkHole = container "Sink Hole"
         }
 
         obiWan -> utapau "Traveled to"
@@ -30,23 +31,28 @@ workspace "Test Workspace" {
         grievous -> obiWan "Killed by"
         cody -> utapau "Laid under sieged"
         cody -> b1 "Shot"
+        b1 -> separatistHangar "Deployed in"
+        obiWan -> landingDeck "Landed on"
+        grievous -> separatistHangar "Had control over"
+        sinkHole -> landingDeck "Provide access to"
+        sinkHole -> separatistHangar "Provide access to"
     }
     views {
         properties {
             "structurizr.sort" "key"
         }
 
-        systemLandscape "Hello there" {
+        systemLandscape "Hello_there" {
             title "Hello There"
             description "All services, components, and infrastructure."
 
             include obiWan->
-            exclude relationship.source==tmp
+            exclude relationship.source==asajj
 
             autoLayout tb 200 100
         }
 
-        systemContext utapau "General Grievous" {
+        systemContext utapau "Utapau" {
             title "Context Overview for General Grievous"
 
             include *
@@ -60,8 +66,13 @@ workspace "Test Workspace" {
             autoLayout rl 200 100
         }
 
-        container b1 "B1 Battle Droid" {
-            title "B1 Battle Droid"
+        container utapau "Hangar" {
+            title "Separatist Hangar"
+
+            include *
+            exclude grievous->b1
+            exclude grievous->obiWan
+            exclude obiWan->grievous
 
             autoLayout bt 200 100
         }
