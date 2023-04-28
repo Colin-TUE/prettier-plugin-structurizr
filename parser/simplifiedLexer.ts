@@ -74,9 +74,5 @@ const SelectLexer = new Lexer(allTokens)
 export function lex(inputText: string): ILexingResult {
   const lexingResult = SelectLexer.tokenize(inputText)
 
-  // if (lexingResult.errors.length > 0) {
-  //   throw Error('Sad Sad Model, lexing errors detected')
-  // }
-
   return lexingResult
 }
