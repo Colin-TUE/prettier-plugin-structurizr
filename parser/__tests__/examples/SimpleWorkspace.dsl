@@ -1,6 +1,6 @@
 workspace "Test Workspace" {
     model {
-        !include model
+        !include path_to_folder
 
         obiWan = person "Obi-Wan Kenobi" {
             description "Jedi Master and High Jedi General within the Third Systems Army and the 7th Sky Corps."
@@ -57,13 +57,13 @@ workspace "Test Workspace" {
             // Exclude persons not present on this system
             exclude asajj
 
-            autoLayout tb 200 100
+            autoLayout rl 200 100
         }
 
         container b1 "B1 Battle Droid" {
             title "B1 Battle Droid"
 
-            autoLayout tb 200 100
+            autoLayout bt 200 100
         }
 
         theme https://starwars.fandom.com/wiki/Droid_march

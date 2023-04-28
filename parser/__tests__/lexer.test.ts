@@ -2,7 +2,7 @@
 
 import { expect } from '@jest/globals'
 import * as fs from 'fs'
-import { tokenMatcher } from 'chevrotain'
+import { IToken, TokenType, tokenMatcher } from 'chevrotain'
 import {
   Workspace,
   String,
@@ -11,6 +11,32 @@ import {
   lex,
   Identifier,
   Comma,
+  Model,
+  ExternalInclude,
+  SoftwareSystem,
+  Person,
+  Relation,
+  Views,
+  SystemContextView,
+  Include,
+  Exclude,
+  Theme,
+  LayoutTopToBottom,
+  LayoutLeftToRight,
+  LayoutBottomToTop,
+  AutoLayout,
+  ContainerView,
+  SystemLandscapeView,
+  Properties,
+  Integer,
+  Assignment,
+  All,
+  Equals,
+  RelationWord,
+  SourceProperty,
+  Property as PropertyToken,
+  LayoutRightToLeft,
+  URL,
 } from '../lexer'
 
 describe('Lexer', () => {
@@ -81,7 +107,81 @@ describe('Lexer', () => {
 
     const tokens = lexingResult.tokens
 
-    expect(tokens).toHaveLength(1)
+    expect(tokens).toHaveLength(154)
+
+    expect(tokens.filter(token => tokenMatcher(token, Workspace))).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, Model))).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, ExternalInclude))
+    ).toHaveLength(1)
+    // expect(tokens.filter((token) => tokenMatcher(token, Path))).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, Person))).toHaveLength(5)
+    expect(
+      tokens.filter(token => tokenMatcher(token, SoftwareSystem))
+    ).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, Relation))).toHaveLength(
+      12
+    )
+    expect(
+      tokens.filter(token => tokenMatcher(token, Assignment))
+    ).toHaveLength(7)
+
+    expect(tokens.filter(token => tokenMatcher(token, Views))).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, Properties))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, SystemLandscapeView))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, SystemContextView))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, ContainerView))
+    ).toHaveLength(2) // Currently it has both the view and hte model element
+    expect(tokens.filter(token => tokenMatcher(token, Include))).toHaveLength(4)
+    expect(tokens.filter(token => tokenMatcher(token, All))).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, Exclude))).toHaveLength(2)
+    expect(
+      tokens.filter(token => tokenMatcher(token, RelationWord))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, PropertyToken))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, SourceProperty))
+    ).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, Equals))).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, AutoLayout))
+    ).toHaveLength(3)
+    expect(
+      tokens.filter(token => tokenMatcher(token, LayoutTopToBottom))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, LayoutLeftToRight))
+    ).toHaveLength(0)
+    expect(
+      tokens.filter(token => tokenMatcher(token, LayoutRightToLeft))
+    ).toHaveLength(1)
+    expect(
+      tokens.filter(token => tokenMatcher(token, LayoutBottomToTop))
+    ).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, Theme))).toHaveLength(1)
+    expect(tokens.filter(token => tokenMatcher(token, URL))).toHaveLength(1)
+
+    expect(
+      tokens.filter(token => tokenMatcher(token, Identifier))
+    ).toHaveLength(39)
+    expect(tokens.filter(token => tokenMatcher(token, String))).toHaveLength(28)
+    expect(tokens.filter(token => tokenMatcher(token, Integer))).toHaveLength(6)
+    expect(tokens.filter(token => tokenMatcher(token, Comma))).toHaveLength(0)
+    expect(
+      tokens.filter(token => tokenMatcher(token, CurlyBraceLeft))
+    ).toHaveLength(13)
+    expect(
+      tokens.filter(token => tokenMatcher(token, CurlyBraceRight))
+    ).toHaveLength(13)
   })
 })
 
