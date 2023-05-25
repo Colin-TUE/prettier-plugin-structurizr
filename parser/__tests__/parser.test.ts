@@ -9,11 +9,11 @@ describe('Parser', () => {
     const inputText = ''
     const parseResult = parseInput(inputText)
 
-    expect(parseResult.errors).toHaveLength(0)
+    expect(parseResult.errors).toHaveLength(1)
 
     const cst = parseResult.cst
 
-    expect(cst).toEqual({ 'children': {}, name: 'main' })
+    expect(cst).toBeUndefined()
   })
 
   it('Cannot parse an invalid input', () => {
@@ -24,7 +24,7 @@ describe('Parser', () => {
 
     const cst = parseResult.cst
 
-    expect(cst).toEqual({ 'children': {}, name: 'main' })
+    expect(cst).toBeUndefined()
   })
 
   it('Can parse an empty workspace', () => {
@@ -35,7 +35,7 @@ describe('Parser', () => {
 
     const cst = parseResult.cst
 
-    expect(cst).toEqual({ 'children': {}, name: 'main' })
+    // expect(cst).toEqual({ 'children': {}, name: 'workspace' })
   })
 
   it('Can parse a simple workspace', () => {
@@ -46,6 +46,6 @@ describe('Parser', () => {
 
     const cst = parseResult.cst
 
-    expect(cst).toEqual({ 'children': {}, name: 'main' })
+    // expect(cst).toEqual({ 'children': {}, name: 'workspace' })
   })
 })

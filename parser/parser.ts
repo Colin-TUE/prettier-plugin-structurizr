@@ -19,10 +19,6 @@ class StructurizrParser extends CstParser {
     this.performSelfAnalysis()
   }
 
-  public structurizr = this.RULE('main', () => {
-    this.OPTION(this.workspace)
-  })
-
   public workspace = this.RULE('workspace', () => {
     this.CONSUME(Workspace)
     this.CONSUME(String)
@@ -62,7 +58,7 @@ export function parseInput(inputText: string) {
   const lexingResult = lex(inputText)
   // "input" is a setter which will reset the parser's state.
   parser.input = lexingResult.tokens
-  const cst = parser.structurizr()
+  const cst = parser.workspace()
 
   // if (parser.errors.length > 0) {
   //   throw new Error('Sad Sad Model, parsing errors detected')
