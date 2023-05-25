@@ -10,4 +10,4 @@ Prettier Plugin for formatting the [Structurizr DSL](https://structurizr.com/).
 - [Prettier plugin documentation](https://prettier.io/docs/en/plugins.html)
 - [Tutorial on Prettier plugin](https://medium.com/@fvictorio/how-to-write-a-plugin-for-prettier-a0d98c845e70)
 - [Prettier plugin tutorial example](https://github.com/fvictorio/prettier-plugin-toml)
--
+- [Blog post that uses Chevrotain with TypeScript to build own simplified version of React](https://dev.to/nathant/how-i-built-my-own-simplified-react-with-chevrotain-typescript-webpack-3ja6)
