@@ -31,7 +31,7 @@ export const String = createToken({ name: 'String', pattern: /".*"/ })
 
 export const Property = createToken({
   name: 'Property',
-  pattern: /[a-zA-Z]+\.[a-zA-Z]+/,
+  pattern: /"?[a-zA-Z]+\.[a-zA-Z]+"?/,
 })
 export const Keyword = createToken({
   name: 'Keyword',
@@ -56,10 +56,11 @@ const allTokens = [
   Comment,
   CommentMultiline,
   Integer,
-  String,
 
   // "keywords" appear before the Identifier
   Property,
+  // String must be after Property due to the "x.y" option
+  String,
   Keyword,
   Relation,
   All,

@@ -87,11 +87,11 @@ describe('Lexer', () => {
 
     const tokens = lexingResult.tokens
 
-    expect(tokens).toHaveLength(191)
+    expect(tokens).toHaveLength(192)
 
     VerifyAmountOfTokenType(tokens, Keyword, 43)
     // VerifyAmountOfTokenType(tokens, Path, 1)
-    VerifyAmountOfTokenType(tokens, Property, 1)
+    VerifyAmountOfTokenType(tokens, Property, 2)
     VerifyAmountOfTokenType(tokens, Assignment, 9)
     VerifyAmountOfTokenType(tokens, All, 2)
     VerifyAmountOfTokenType(tokens, Equals, 1)
