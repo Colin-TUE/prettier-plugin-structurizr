@@ -1,13 +1,14 @@
-'use strict';
-import * as fs from 'fs';
+'use strict'
+import * as fs from 'fs'
 
 export function readDsl(example: Examples): string {
-  const enumName = Examples[example];
+  const enumName = Examples[example]
   const content = fs.readFileSync(
-    `./structurizr_examples/${enumName}.dsl`,
+    // Note that Structurizr Lite expects the file to be called workspace with all lower case letters, hence the `toLowerCase`
+    `./structurizr_examples/${enumName.toLowerCase()}.dsl`,
     'utf8'
-  );
-  return content;
+  )
+  return content
 }
 /**
  * Enum depicting the different examples that are present for parsing
@@ -15,5 +16,5 @@ export function readDsl(example: Examples): string {
 export enum Examples {
   Invalid,
   EmptyWorkspace,
-  workspace
+  Workspace,
 }

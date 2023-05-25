@@ -103,7 +103,7 @@ describe('Lexer', () => {
   })
 
   it('Can lex a simple workspace', () => {
-    const inputText = readDsl(Examples.workspace)
+    const inputText = readDsl(Examples.Workspace)
     const lexingResult = lex(inputText)
 
     expect(lexingResult.errors).toHaveLength(0)
