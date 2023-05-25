@@ -158,7 +158,7 @@ export default {
   //   "**/?(*.)+(spec|test).[tj]s?(x)"
   // ],
   testMatch: [
-      "**/__tests__/**/*.ts",
+      "**/__tests__/**/*.test.ts",
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped

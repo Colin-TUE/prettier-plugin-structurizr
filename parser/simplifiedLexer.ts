@@ -69,10 +69,10 @@ const allTokens = [
   Identifier,
 ]
 
-const SelectLexer = new Lexer(allTokens)
+const SimplifiedStructurizrLexer = new Lexer(allTokens)
 
 export function lex(inputText: string): ILexingResult {
-  const lexingResult = SelectLexer.tokenize(inputText)
+  const lexingResult = SimplifiedStructurizrLexer.tokenize(inputText)
 
   return lexingResult
 }

@@ -1,7 +1,6 @@
 'use strict'
 
 import { expect } from '@jest/globals'
-import * as fs from 'fs'
 import { IToken, TokenType, tokenMatcher } from 'chevrotain'
 import {
   String,
@@ -18,6 +17,7 @@ import {
   URL,
   Keyword,
 } from '../simplifiedLexer'
+import { Examples, readDsl } from './readDsl'
 
 describe('Lexer', () => {
   it('Can lex an empty file', () => {
@@ -113,22 +113,4 @@ function VerifyAmountOfTokenType(
   expect(tokens.filter(token => tokenMatcher(token, tokenType))).toHaveLength(
     expectedAmount
   )
-}
-
-function readDsl(example: Examples): string {
-  const enumName = Examples[example]
-  const content = fs.readFileSync(
-    `./structurizr_examples/${enumName}.dsl`,
-    'utf8'
-  )
-  return content
-}
-
-/**
- * Enum depicting the different examples that are present for parsing
- */
-enum Examples {
-  Invalid,
-  EmptyWorkspace,
-  workspace,
 }

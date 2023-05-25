@@ -168,10 +168,10 @@ const allTokens = [
   Identifier,
 ]
 
-const SelectLexer = new Lexer(allTokens)
+const StructurizrLexer = new Lexer(allTokens)
 
 export function lex(inputText: string): ILexingResult {
-  const lexingResult = SelectLexer.tokenize(inputText)
+  const lexingResult = StructurizrLexer.tokenize(inputText)
 
   // if (lexingResult.errors.length > 0) {
   //   throw Error('Sad Sad Model, lexing errors detected')
