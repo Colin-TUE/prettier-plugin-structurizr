@@ -9,6 +9,9 @@ import {
   Workspace,
   allTokens,
   lex,
+  Assignment,
+  Relation,
+  WhiteSpace,
 } from './lexer'
 
 import { CstParser } from 'chevrotain'
@@ -34,14 +37,45 @@ class StructurizrParser extends CstParser {
     this.CONSUME(Model)
     this.CONSUME1(CurlyBraceLeft)
 
-    this.OPTION3(this.include)
+    this.OPTION3(this.externalInclude)
+
+    this.MANY({
+      DEF: () => {
+        this.OR([
+          {
+            ALT: () => {
+              this.CONSUME(Identifier)
+              this.CONSUME(Assignment)
+              this.SUBRULE1(this.modelElement)
+            },
+          },
+          {
+            ALT: () => {
+              this.SUBRULE2(this.modelElement)
+            },
+          },
+          { ALT: () => this.SUBRULE(this.relation) },
+        ])
+      },
+    })
 
     this.CONSUME1(CurlyBraceRight)
   })
 
-  public include = this.RULE('external include', () => {
+  private externalInclude = this.RULE('external include', () => {
     this.CONSUME(ExternalInclude)
+    this.CONSUME4(Identifier)
+  })
+
+  private modelElement = this.RULE('model element', () => {
+    this.CONSUME(WhiteSpace)
+  })
+
+  private relation = this.RULE('relation', () => {
     this.CONSUME1(Identifier)
+    this.CONSUME(Relation)
+    this.CONSUME2(Identifier)
+    this.CONSUME(String)
   })
 
   public views = this.RULE('views', () => {
