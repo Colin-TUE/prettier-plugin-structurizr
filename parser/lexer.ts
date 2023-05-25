@@ -120,7 +120,7 @@ export const SourceProperty = createToken({
   pattern: /source/,
 })
 
-const allTokens = [
+export const allTokens = [
   WhiteSpace,
   Comma,
   CurlyBraceLeft,
