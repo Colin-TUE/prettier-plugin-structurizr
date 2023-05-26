@@ -35,7 +35,7 @@ describe('Parser', () => {
 
     const cst = parseResult.cst
 
-    // expect(cst).toEqual({ 'children': {}, name: 'workspace' })
+    expect(cst).toMatchSnapshot()
   })
 
   it('Can parse a simple workspace', () => {
@@ -46,6 +46,6 @@ describe('Parser', () => {
 
     const cst = parseResult.cst
 
-    // expect(cst).toEqual({ 'children': {}, name: 'workspace' })
+    expect(cst).toMatchSnapshot()
   })
 })
