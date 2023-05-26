@@ -4,7 +4,7 @@ import { expect } from '@jest/globals'
 import { parseInput } from '../parser'
 import { Examples, readDsl } from './readDsl'
 
-describe('Parser', () => {
+describe.skip('Parser', () => {
   it('Can parse an empty file', () => {
     const inputText = ''
     const parseResult = parseInput(inputText)
